@@ -1,0 +1,94 @@
+<nav class="navbar navbar-light" style="background-color: #4FB3FF; " >
+  <a class="navbar-brand" routerLink="/buttons" routeLinkActive="active" style="color:rgb(255, 255, 255)">
+    <img src="../../../assets/usuario.png" width="30" height="30" class="d-inline-block align-top"
+      alt="">
+      WEB OCTAVIO PAZ
+  </a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" align="right">
+    
+    <ul class="navbar-nav mr-auto">
+      
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/userprofile" routeLinkActive="active">Perfil</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>
+
+<div align="center">
+  <h1>REGISTRO DE MOBILIARIOS</h1>
+</div>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+            <h5 class="card-title text-center">Mobiliarios</h5>
+          <form #mobiliarioForm="ngForm" (ngSubmit)="addMobiliario(mobiliarioForm)">
+            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="mobiliarioService.selectedMobiliario._id">
+            <div class="">
+                <div class="form-label-group">
+                <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="mobiliarioService.selectedMobiliario.nombre"  class="form-control">
+                <label>Nombre</label>
+              </div>  
+              <div class="form-label-group">
+                <input type="text" name="nominventario" #nominventario="ngModel" [(ngModel)]="mobiliarioService.selectedMobiliario.nominventario" class="form-control" >
+                <label>Numero de inventario</label>
+              </div>  
+              <div class="form-label-group">
+                <input type="text" name="observaciones" #observaciones="ngModel" [(ngModel)]="mobiliarioService.selectedMobiliario.observaciones" class="form-control">
+                <label>Observaciones</label>
+              </div>
+              <div class="card-action">
+                <div class="">
+                  <button class="btn btn-primary " type="submit" style="margin-left: 2px; ">Guardar</button>
+                  <button class="btn btn-primary " type="submit" style="margin-left: 6px;" (click)="resetForm(mobiliarioForm)">Limpiar</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div  class="col-md-8">
+        <table class="table" id="example" >
+          <thead class="thead-dark">
+              <tr>
+                <th>Nombre</th>
+                <th>Número de inventario</th>
+                <th>Observaciones</th>
+                <th>Acciones</th>
+                
+                </tr>
+              </thead>
+            <tbody>
+                <tr *ngFor="let mobiliario of mobiliarioService.mobiliarios">
+                    <td>{{mobiliario.nombre}}</td>
+                    <td>{{mobiliario.nominventario}}</td>
+                    <td>{{mobiliario.observaciones}}</td>
+                    <td>
+                        <a (click)="editMobiliario(mobiliario)">
+                            <i class="material-icons">edit</i>
+                          </a>
+                          <a (click)="deleteMobiliario(mobiliario._id)" >
+                            <i class="material-icons">delete</i>
+                          </a>
+                    </td>
+                    
+                    
+                </tr>
+    
+            </tbody>
+          </table>
+    </div>
+
+  </div>
+</div>

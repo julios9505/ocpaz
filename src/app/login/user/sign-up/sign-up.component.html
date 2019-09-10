@@ -1,0 +1,64 @@
+<nav class="navbar navbar-light" style="background-color: #4FB3FF; " >
+  <a class="navbar-brand" routerLink="/login" routeLinkActive="active" style="color:rgb(255, 255, 255)">
+      WEB OCTAVIO PAZ
+  </a>
+
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <h5 class="card-title text-center">Crear cuenta</h5>
+          <div align="center">
+            <img src="/assets/img/iconagrear.png" id="icon" alt="User Icon" width="126px" height="126"/>
+          </div>
+          <form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)" class="form-signin">
+              <div class="form-label-group">
+            <input type="text" #fullName="ngModel" [(ngModel)]="userService.selectedUser.fullName" name="fullName"
+               required [ngClass]="{'invalid-textbox': signUpForm.submitted && !fullName.valid}" class="form-control">
+              <label>Nombre - Apellido</label>
+            </div>
+              <div *ngIf="signUpForm.submitted && !fullName.valid">
+              <label class="validation-message">Este campo es requerido</label>
+            </div>
+            
+          <div class="form-label-group">
+            <input type="text" #email="ngModel" [(ngModel)]="userService.selectedUser.email" name="email"
+               required [pattern]="emailRegex"
+              [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid}" class="form-control">
+              <label>Dirección de correo</label>
+            </div>
+              <div *ngIf="signUpForm.submitted && email.errors">
+              <label *ngIf="email.errors.required" class="validation-message">This field is required.</label>
+              <label *ngIf="email.errors.pattern" class="validation-message">Invalid email address.</label>
+            </div>
+            <div class="form-label-group">
+            <input type="password" #password="ngModel" [(ngModel)]="userService.selectedUser.password" name="password"
+               required minlength="4"
+              [ngClass]="{'invalid-textbox': signUpForm.submitted && !password.valid}" class="form-control">
+              <label>Constraseña</label>
+            </div>
+              <div *ngIf="signUpForm.submitted && password.errors">
+              <label *ngIf="password.errors.required" class="validation-message">This field is required.</label>
+              <label *ngIf="password.errors.minlength" class="validation-message">Enter atleast 4 characters.</label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Agregar</button>
+          </form>
+          <br>
+          <div align="center">
+          <a routerLink="/login">¿Ya tienes una cuenta?</a>
+        </div>
+
+          <div class="success" *ngIf="showSucessMessage">
+            Usuario creado
+          </div>
+
+          <div class="alert" *ngIf="serverErrorMessages">
+            {{ serverErrorMessages }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

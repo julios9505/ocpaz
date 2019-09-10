@@ -1,0 +1,127 @@
+<nav class="navbar navbar-light" style="background-color: #4FB3FF; " >
+  <a class="navbar-brand" routerLink="/buttons" routeLinkActive="active" style="color:rgb(255, 255, 255)">
+    <img src="../../../assets/usuario.png" width="30" height="30" class="d-inline-block align-top"
+      alt="">
+      WEB OCTAVIO PAZ
+  </a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" align="right">
+    
+    <ul class="navbar-nav mr-auto">
+      
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/userprofile" routeLinkActive="active">Perfil</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>
+
+<div align="center">
+  <h1>REGISTRO DE LIBROS</h1>
+</div>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+            <h5 class="card-title text-center">Libros</h5>
+          <form #libroForm="ngForm" (ngSubmit)="addLibro(libroForm)">
+            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="libroService.selectedLibro._id">
+            <div class="">
+                <div class="form-label-group">
+                <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="libroService.selectedLibro.nombre"
+                  class="form-control">
+                  <label>Titulo</label>
+              </div>
+              <div class="form-label-group">
+                <input type="text" name="autor" #autor="ngModel" [(ngModel)]="libroService.selectedLibro.autor"
+                   class="form-control">
+                  <label>Autor</label>
+              </div>
+              <div class="form-label-group">
+                <input type="text" name="editorial" #editorial="ngModel"
+                  [(ngModel)]="libroService.selectedLibro.editorial"  class="form-control">
+                  <label>Editorial</label>
+                </div>
+              <div class="form-label-group">
+                <input type="text" name="edicion" #edicion="ngModel" [(ngModel)]="libroService.selectedLibro.edicion"
+                  class="form-control">
+                  <label>Edicion</label>
+                </div>
+              <div class="form-label-group">
+                <input type="text" name="numero" #numero="ngModel" [(ngModel)]="libroService.selectedLibro.numero"
+                   class="form-control">
+                   <label>Cantidad existente</label>
+                  </div>
+              <!-- <div class = "form-group">
+                        <input type="radio" name= "SO" #numero="ngModel"[(ngModel)]="libroService.selectedLibro.estado"
+                        placeholder="Estado de conservación" class="form-control" value="Bueno"> BUeno
+                        <input type="radio" name= "SO" #numero="ngModel"[(ngModel)]="libroService.selectedLibro.estado"
+                        placeholder="Estado de conservación" class="form-control"value="Regular"> Regular
+                        <input type="radio" name= "SO" #numero="ngModel"[(ngModel)]="libroService.selectedLibro.estado"
+                        placeholder="Estado de conservación" class="form-control"value="Deficiente"> Deficiente
+                      </div>
+                    -->
+
+
+
+              <div class="card-action">
+                <div class="">
+                  <button class="btn btn-primary " type="submit" style="margin-left: 2px; ">Guardar</button>
+                  <button class="btn btn-primary " type="submit" style="margin-left: 6px;"
+                    (click)="resetForm(libroForm)">Limpiar</button>
+
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <table class="table" id="example">
+        <thead class="thead-dark">
+          <tr>
+            <th>Título </th>
+            <th>Autor </th>
+            <th>Editorial </th>
+            <th>Edicion</th>
+            <th>Cantidad existente </th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let libro of libroService.libro">
+            <td>{{ libro.nombre}}</td>
+            <td>{{ libro.numero}}</td>
+            <td>{{ libro.editorial}}</td>
+            <td>{{ libro.edicion}}</td>
+            <td>{{ libro.autor}}</td>
+
+            <td>
+              <a (click)="editLibro(libro)">
+                <i class="material-icons">edit</i>
+              </a>
+
+              <a (click)="deleteLibro(libro._id)">
+                <i class="material-icons">delete</i>
+              </a>
+
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+
+    </div>
+  </div>
+</div>

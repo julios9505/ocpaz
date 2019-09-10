@@ -1,0 +1,49 @@
+<nav class="navbar navbar-light" style="background-color: #4FB3FF;  " >
+  <a class="navbar-brand" routerLink="/login" routeLinkActive="active" style="color:rgb(255, 255, 255)">
+      WEB OCTAVIO PAZ
+  </a>
+
+</nav>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body" >
+          <h5 class="card-title text-center">Inicio de sesión</h5>
+          <div align="center">
+            <img src="assets/img/ico.png" id="icon" alt="User Icon" width="126px" height="126" />
+          </div>
+          <form #signInForm="ngForm" (ngSubmit)="signInForm.valid && onSubmit(signInForm)" class="form-signin">
+            <div class="form-label-group">
+              <input type="text" name="email" #email="ngModel" [(ngModel)]="model.email" [pattern]="emailRegex" required
+                [ngClass]="{'invalid-textbox' :signInForm.submitted  && !email.valid}" class="form-control">
+              <label>Dirección de correo</label>
+            </div>
+            <div *ngIf="signInForm.submitted && email.errors?.pattern">
+              <label class="validation-message">Direccion de correo incorrecto</label>
+            </div>
+            <div class="form-label-group">
+
+              <input type="password" name="password" #password="ngModel" [(ngModel)]="model.password" required
+                minlength="4" [ngClass]="{'invalid-textbox' :signInForm.submitted  && !password.valid}"
+                class="form-control">
+              <label>Constraseña</label>
+            </div>
+            <div *ngIf="signInForm.submitted && password.errors?.minlength">
+              <label class="validation-message">Minimo 4 caracteres</label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Ingresar</button>
+          </form>
+          <br>
+          <div align="center">
+          <a routerLink="/signup">¿No tienes una cuenta?</a>
+        </div>
+          <div class="alert" *ngIf="serverErrorMessages">
+            {{serverErrorMessages}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

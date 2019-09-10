@@ -1,0 +1,112 @@
+<nav class="navbar navbar-light" style="background-color: #4FB3FF; " >
+  <a class="navbar-brand" routerLink="/buttons" routeLinkActive="active" style="color:rgb(255, 255, 255)">
+    <img src="../../../assets/usuario.png" width="30" height="30" class="d-inline-block align-top"
+      alt="">
+      WEB OCTAVIO PAZ
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" align="right">
+
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/userprofile" routeLinkActive="active">Perfil</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>
+
+<div align="center">
+  <h1>REGISTRO INTENDENCIAS</h1>
+</div>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-body">
+            <h5 class="card-title text-center">Intendencias</h5>
+          <form #intendenciaForm="ngForm" (ngSubmit)="addIntendencia(intendenciaForm)">
+            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="intendenciaService.selectedIntendencia._id">
+            <div class="">
+              <div class="form-label-group">
+                <input type="text" name="nombre" #nombre="ngModel"
+                  [(ngModel)]="intendenciaService.selectedIntendencia.nombre"
+                  class="form-control">
+                  <label>Nombre</label>
+              </div>
+              <div class="form-label-group">
+                <input type="text" name="clave" #clave="ngModel"
+                  [(ngModel)]="intendenciaService.selectedIntendencia.clave" 
+                  class="form-control">
+                  <label>Clave</label>
+              </div>
+              <div class="form-label-group">
+                <input type="text" name="cantidad" #cantidad="ngModel"
+                  [(ngModel)]="intendenciaService.selectedIntendencia.cantidad"
+                  class="form-control">
+                  <label>Cantidad</label>
+              </div>
+              <div class="form-label-group">
+                <input type="text" name="descripcion" #descripcion="ngModel"
+                  [(ngModel)]="intendenciaService.selectedIntendencia.descripcion" 
+                  class="form-control">
+                  <label>Descripcion</label>
+              </div>
+
+              <div class="card-action">
+                <div class="">
+                  <button class="btn btn-primary " type="submit" style="margin-left: 2px; ">Guardar</button>
+                  <button class="btn btn-primary " type="submit" style="margin-left: 6px;"
+                    (click)="resetForm(intendenciaForm)">Limpiar</button>
+
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7" id="tblData">
+      <table id="example" class="table display compact AllDataTables" cellspacing="0" style="width:100%">
+        <thead class="thead-dark">
+          <tr>
+            <th>Nombre: </th>
+            <th>Clave: </th>
+            <th>Cantidad: </th>
+            <th>Descripcion: </th>
+            <th>Acciones: </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let intendencia of intendenciaService.intendencia">
+            <td>{{ intendencia.nombre}}</td>
+            <td>{{ intendencia.clave}}</td>
+            <td>{{ intendencia.cantidad}}</td>
+            <td>{{ intendencia.descripcion}}</td>
+
+            <td>
+              <a (click)="editIntendencia(intendencia)">
+                <i class="material-icons">edit</i>
+              </a>
+
+              <a (click)="deleteIntendencia(intendencia._id)">
+                <i class="material-icons">delete</i>
+              </a>
+
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+
+    </div>
+  </div>
+</div>
