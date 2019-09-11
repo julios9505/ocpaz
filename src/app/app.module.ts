@@ -30,6 +30,7 @@ import { RouterModule } from '@angular/router';
 
 import { UserComponent } from './login/user/user.component';
 import { SignUpComponent } from './login/user/sign-up/sign-up.component';
+import { DonaComponent } from './components/dona/dona.component';
 //routes
 import { UserProfileComponent } from './login/user-profile/user-profile.component';
 import { SignInComponent } from './login/user/sign-in/sign-in.component';
@@ -48,6 +49,7 @@ import { AuthInterceptor } from './login/auth/auth.interceptor';
     MobiliariosComponent,
     LibrosComponent,
     LecturaComponent,
+    DonaComponent,
     IntendenciasComponent,
     ButtonsComponent,
     EmployeeComponent,
