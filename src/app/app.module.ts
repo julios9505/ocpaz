@@ -38,7 +38,7 @@ import { UserService } from './login/shared/user.service';
 //other
 import { AuthGuard } from './login/auth/auth.guard';
 import { AuthInterceptor } from './login/auth/auth.interceptor';
-import { ChartsModule } from "ng2-charts/ng2-charts";
+import { ChartsModule } from "ng2-charts";
 
 
 
