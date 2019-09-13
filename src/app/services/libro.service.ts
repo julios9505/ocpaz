@@ -11,7 +11,7 @@ export class LibroService {
   selectedLibro: Libro;
   libro: Libro[];
   //Local
-  // readonly URL_API = 'http://localhost:3200/api/libros';
+  //  readonly URL_LIB = 'http://localhost:3200/api/libros';
 
   //Heroku
   readonly URL_LIB = '/api/libros';

@@ -11,11 +11,11 @@ export class LecturaService {
   selectedLectura: Lectura;
   lecturas: Lectura[];
   //LOCAL
-  //readonly URL_API = 'http://localhost:3200/api/lecturas';
+  // readonly URL_LECT = 'http://localhost:3200/api/lecturas';
   //heroku
   readonly URL_LECT = 'api/lecturas';
 
-  constructor(private http: HttpClient) {
+  constructor(public http: HttpClient) {
     this.selectedLectura = new Lectura();
   }
 
@@ -25,6 +25,10 @@ export class LecturaService {
 
   getLecturas() {
     return this.http.get(this.URL_LECT);
+  }
+
+  getLecturas2(_id: string) {
+    return this.http.get(this.URL_LECT + `/${_id}`);
   }
 
   putLectura(lectura: Lectura) {

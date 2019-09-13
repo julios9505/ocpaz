@@ -11,7 +11,7 @@ export class IntendenciaService {
   selectedIntendencia: Intendencia;
   intendencia: Intendencia[];
 //local
-//  readonly URL_API = 'http://localhost:3200/api/intendencias';
+  // readonly URL_INT = 'http://localhost:3200/api/intendencias';
 
 
 //heroku

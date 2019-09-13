@@ -11,7 +11,7 @@ export class EmployeeService {
   selectedEmployee: Employee;
   employees: Employee[];
   //local
-  // readonly URLEMP = 'http://localhost:3200/api/employees';
+  //  readonly URLEMP = 'http://localhost:3200/api/employees';
   //heroku
   readonly URLEMP = '/api/employees';
 
@@ -25,6 +25,9 @@ export class EmployeeService {
 
   getEmployees() {
     return this.http.get(this.URLEMP);
+  }
+  getAlumno(_id: string) {
+    return this.http.get(this.URLEMP + `/${_id}`);
   }
 
   putEmployee(employee: Employee) {

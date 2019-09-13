@@ -20,7 +20,7 @@
 </nav>
 <br>
 
-<div align="center">
+<div>
   <h1>REGISTRO LECTURAS</h1>
 </div>
 <br>
@@ -30,28 +30,33 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title text-center">Lecturas</h5>
-
           <form #lecturaForm="ngForm" (ngSubmit)="addLectura(lecturaForm)">
             <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="lecturaService.selectedLectura._id">
             <div class="">
               <div class="form-label-group">
-                <input type="text" name="name" #name="ngModel" [(ngModel)]="lecturaService.selectedLectura.name"
-                  class="form-control">
-                <label>Nombre Alumno</label>
+                <!-- <input type="text" name="name" #name="ngModel" [(ngModel)]="lecturaService.selectedLectura.name"
+                  class="form-control"> -->
+                  <!-- <label>Nombre Alumno</label> -->
+                  <select class="form-control" name="alumno" #alumno="ngModel" [(ngModel)]="lecturaService.selectedLectura.alumno">
+                    <option *ngFor="let item of alumnos" value="{{item._id}}">
+                      {{item.name}}
+                    </option>
+                  </select>
+                
               </div>
               <div class="form-label-group">
-                <input type="text" name="palabras" #name="ngModel" [(ngModel)]="lecturaService.selectedLectura.palabras"
+                <input type="text" name="palabras" #palabras="ngModel" [(ngModel)]="lecturaService.selectedLectura.palabras"
                   class="form-control">
                 <label>Numero de palabras</label>
               </div>
               <div class="form-label-group">
-                <input type="text" name="segundos" #name="ngModel" [(ngModel)]="lecturaService.selectedLectura.segundos"
+                <input type="text" name="segundos" #segundos="ngModel" [(ngModel)]="lecturaService.selectedLectura.segundos"
                   class="form-control">
                 <label>Numero de segundos</label>
               </div>
               <div class="form-label-group">
-                <input type="text" name="velocidad" #name="ngModel"
-                  [(ngModel)]="lecturaService.selectedLectura.velocidad" value="0" class="form-control">
+                <input type="text" name="velocidad" #velocidad="ngModel"
+                  [(ngModel)]="lecturaService.selectedLectura.velocidad" class="form-control">
                 <label>Velocidad</label>
               </div>
               <div class="card-action">
@@ -78,16 +83,16 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let lectura of lecturaService.lecturas">
+          <tr *ngFor="let lectura of lecturas">
             <td>{{ lectura.name }}</td>
             <td>{{ lectura.palabras }}</td>
-            <td>{{ lectura.segundos }}</td>
-            <td>{{ lectura.velocidad }}</td>
+            <td>{{ lectura.seg }}</td>
+            <td>{{ lectura.vel }}</td>
             <td>
               <a (click)="editLectura(lectura)">
                 <i class="material-icons">edit</i>
               </a>
-              <a (click)="deleteLectura(lectura._id, lecturaForm)">
+              <a (click)="deleteLectura(lectura.id, lecturaForm)">
                 <i class="material-icons">delete</i>
               </a>
             </td>

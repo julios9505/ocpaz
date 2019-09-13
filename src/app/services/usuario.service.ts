@@ -10,7 +10,7 @@ export class UsuarioService {
   selectedUsuario : Usuario;
   usuarios:Usuario[];
   //local
-  //readonly URL_API = 'http://localhost:3200/api/usuarios'
+  // readonly URL_USU = 'http://localhost:3200/api/usuarios'
 
   //heroku
   readonly URL_USU = '/api/usuarios'

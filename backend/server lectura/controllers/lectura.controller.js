@@ -9,7 +9,7 @@ lecturaCtrl.getLecturas = async (req, res, next) => {
 
 lecturaCtrl.createLectura = async (req, res, next) => {
     const lectura = new Lectura({
-        name: req.body.name,
+        name: req.body.alumno,
         palabras: req.body.palabras,
         segundos: req.body.segundos,
         velocidad: req.body.velocidad
@@ -20,14 +20,21 @@ lecturaCtrl.createLectura = async (req, res, next) => {
 
 lecturaCtrl.getLectura = async (req, res, next) => {
     const { id } = req.params;
-    const lectura = await Lectura.findById(id);
+    const lectura = await Lectura.find({"name":id});
+    res.json(lectura);
+};
+
+lecturaCtrl.getLectura2 = async (req, res, next) => {
+    const { alumno } = req.params;
+    console.log(alumno);
+    const lectura = await Lectura.find({"name": "julio"});
     res.json(lectura);
 };
 
 lecturaCtrl.editLectura = async (req, res, next) => {
     const { id } = req.params;
     const lectura = {
-        name: req.body.name,
+        name: req.body.alumno,
         palabras: req.body.palabras,
         segundos: req.body.segundos,
         velocidad: req.body.velocidad

@@ -9,11 +9,11 @@ export class MobiliarioService {
   selectedMobiliario : Mobiliario;
   mobiliarios:Mobiliario[];
   //LOCAL
-  // readonly URL_API = 'http://localhost:3200/api/mobiliarios'
+  // readonly URL_MOB = 'http://localhost:3200/api/mobiliarios'
 
 
   //HEROKU
-  readonly URL_MOB = '/api/mobiliarios'
+ readonly URL_MOB = '/api/mobiliarios'
   constructor(private http: HttpClient) { 
     this.selectedMobiliario = new Mobiliario();
   }

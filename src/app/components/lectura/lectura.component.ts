@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { LecturaService } from '../../services/lectura.service';
 import { NgForm } from '@angular/forms';
 import { Lectura } from '../../models/lectura';
+import { EmployeeService } from 'src/app/services/employee.service';
+import { Employee } from 'src/app/models/employee';
 
 declare var M: any;
 
@@ -14,10 +16,14 @@ declare var M: any;
 })
 export class LecturaComponent implements OnInit {
 
-  constructor(public lecturaService: LecturaService) { }
+  lecturas = [];
+  alumno: Employee;
+  alumnos;
+  constructor(public lecturaService: LecturaService, public employeeService: EmployeeService, public alumServ:EmployeeService) { }
 
   ngOnInit() {
     this.getLecturas();
+    this.getAlumnos();
   }
 
   addLectura(form?: NgForm) {
@@ -39,11 +45,28 @@ export class LecturaComponent implements OnInit {
     }
     
   }
-
+  
   getLecturas() {
     this.lecturaService.getLecturas()
       .subscribe(res => {
         this.lecturaService.lecturas = res as Lectura[];
+        for(let e of this.lecturaService.lecturas) {
+          var idAlum = e["name"];
+          this.alumServ.getAlumno(idAlum).subscribe(res => {
+            this.alumno = res as Employee;
+            var nombre = this.alumno.name + ' ' + this.alumno.apellido;
+            var id = this.alumno._id;
+            var lects = {
+              id: id,
+              name: nombre,
+              palabras: e.palabras,
+              seg: e.segundos,
+              vel: e.velocidad
+            }
+            this.lecturas.push(lects);
+          });
+          
+        }
       });
   }
 
@@ -67,6 +90,12 @@ export class LecturaComponent implements OnInit {
       form.reset();
       this.lecturaService.selectedLectura = new Lectura();
     }
+  }
+
+  getAlumnos() {
+    this.employeeService.getEmployees().subscribe(res => {
+      this.alumnos= res as Employee[];
+    });
   }
 
 }

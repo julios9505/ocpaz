@@ -18,6 +18,7 @@ import { ButtonsComponent } from './components/buttons/buttons.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { DonaComponent } from './components/dona/dona.component';
+import { BarraComponent } from './components/barra/barra.component';
 // For MDB Angular Free
 import { NavbarModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -50,6 +51,7 @@ import { ChartsModule } from "ng2-charts";
     LibrosComponent,
     LecturaComponent,
     DonaComponent,
+    BarraComponent,
     IntendenciasComponent,
     ButtonsComponent,
     EmployeeComponent,

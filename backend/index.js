@@ -1,8 +1,8 @@
 require('dotenv').config();
-require('./database');
 require('./server/config/config');
 require('./server/models/db');
 require('./server/config/passportConfig');
+require('./database');
 
 const express = require('express'),
     path = require('path'),

@@ -18,6 +18,7 @@ import { SignUpComponent } from '../../login/user/sign-up/sign-up.component';
 import { SignInComponent } from '../../login/user/sign-in/sign-in.component';
 import { UserProfileComponent } from '../../login/user-profile/user-profile.component';
 import { AuthGuard } from '../../login/auth/auth.guard';
+import { BarraComponent } from '../barra/barra.component';
 const routes: Routes = [
 
   { path: 'route', component: AppComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'usuarios', component: UsuariosComponent },
    { path: 'libros', component: LibrosComponent },
   { path: 'employee', component: EmployeeComponent },
+  { path: 'barra', component: BarraComponent },
    { path: 'intendencias', component: IntendenciasComponent },
   //{ path: 'register', component: RegisterComponent },
   //{ path: 'login', component: LoginComponent },
